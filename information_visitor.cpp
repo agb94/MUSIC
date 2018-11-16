@@ -144,6 +144,19 @@ bool InformationVisitor::VisitFunctionDecl(FunctionDecl *fd)
   return true;
 }
 
+bool InformationVisitor::VisitDeclRefExpr(DeclRefExpr *dre)
+{
+    ValueDecl *decl = dre->getDecl();
+
+    if (VarDecl *v_decl = dyn_cast<VarDecl>(decl)){
+        SourceLocation loc = dre->getLocation();
+        unsigned int line = src_mgr_.getExpansionLineNumber(loc);
+        line_to_vars_map_[line].insert(v_decl);
+    }
+
+    return true;
+}
+
 SymbolTable* InformationVisitor::getSymbolTable()
 {
   return new SymbolTable(
@@ -152,7 +165,8 @@ SymbolTable* InformationVisitor::getSymbolTable()
       &global_scalar_vardecl_list_, &local_scalar_vardecl_list_,
       &global_array_vardecl_list_, &local_array_vardecl_list_,
       &global_struct_vardecl_list_, &local_struct_vardecl_list_,
-      &global_pointer_vardecl_list_, &local_pointer_vardecl_list_);
+      &global_pointer_vardecl_list_, &local_pointer_vardecl_list_,
+      &line_to_vars_map_);
 }
 
 LabelStmtToGotoStmtListMap* InformationVisitor::getLabelToGotoListMap()

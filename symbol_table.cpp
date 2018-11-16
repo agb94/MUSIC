@@ -12,7 +12,8 @@ SymbolTable::SymbolTable(
 		VarDeclList *g_struct_vardecl_list,
 	  std::vector<VarDeclList> *l_struct_vardecl_list,
 		VarDeclList *g_pointer_vardecl_list,
-	  std::vector<VarDeclList> *l_pointer_vardecl_list)
+	  std::vector<VarDeclList> *l_pointer_vardecl_list,
+      LineToVarsMap *line_to_vars_map)
 	:global_scalarconstant_list_(g_scalarconstant_list),
 	local_scalarconstant_list_(l_scalarconstant_list),
 	global_stringliteral_list_(g_stringliteral_list),
@@ -24,7 +25,8 @@ SymbolTable::SymbolTable(
 	global_struct_vardecl_list_(g_struct_vardecl_list),
 	local_struct_vardecl_list_(l_struct_vardecl_list),
 	global_pointer_vardecl_list_(g_pointer_vardecl_list),
-	local_pointer_vardecl_list_(l_pointer_vardecl_list)
+	local_pointer_vardecl_list_(l_pointer_vardecl_list),
+    line_to_vars_map_(line_to_vars_map)
 {}
 
 

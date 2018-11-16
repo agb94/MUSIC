@@ -5,6 +5,7 @@
 #include <string>
 #include <utility>
 #include <map>
+#include <set>
 
 #include "clang/Frontend/CompilerInstance.h"
 #include "clang/AST/ASTConsumer.h"
@@ -50,6 +51,9 @@ typedef std::vector<ExprList> LocalScalarConstantList;
 // pair<range of switch statement, list of case values' string representation>
 typedef std::vector<std::pair<clang::SourceRange, std::vector<std::string>>> SwitchStmtInfoList;
 
+// a map from a code line to a set of the variables used at the code line
+typedef std::map<int, std::set<clang::VarDecl *>> LineToVarsMap;
+
 class SymbolTable
 {
 public:
@@ -65,7 +69,8 @@ public:
 			VarDeclList *g_struct_vardecl_list,
 		  std::vector<VarDeclList> *l_struct_vardecl_list,
 			VarDeclList *g_pointer_vardecl_list,
-		  std::vector<VarDeclList> *l_pointer_vardecl_list);
+		  std::vector<VarDeclList> *l_pointer_vardecl_list,
+          LineToVarsMap *line_to_vars_map);
 
   // getters
 	GlobalScalarConstantList* getGlobalScalarConstantList();
@@ -109,6 +114,8 @@ private:
   // local_pointer_vardecl_list_ follows the same nesting rule as ScopeRangeList
   VarDeclList *global_pointer_vardecl_list_;
   std::vector<VarDeclList> *local_pointer_vardecl_list_;
+
+  LineToVarsMap *line_to_vars_map_;
 };
 
 #endif	// MUSIC_SYMBOL_TABLE

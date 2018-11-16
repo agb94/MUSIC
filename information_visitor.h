@@ -25,6 +25,7 @@ public:
   bool VisitTypedefDecl(clang::TypedefDecl *td);
   bool VisitVarDecl(clang::VarDecl *vd);
   bool VisitFunctionDecl(clang::FunctionDecl *fd);
+  bool VisitDeclRefExpr(clang::DeclRefExpr *dre);
 
   SymbolTable* getSymbolTable();
   LabelStmtToGotoStmtListMap* getLabelToGotoListMap();
@@ -83,6 +84,9 @@ private:
   // Map from label declaration location to locations of Goto statements
   // pointing to that label.
   LabelStmtToGotoStmtListMap label_to_gotolist_map_;
+
+  // Map from a code line to a set of variables accessed at the line.
+  LineToVarsMap line_to_vars_map_;
 
   void CollectVarDecl(clang::VarDecl *vd);
   void CollectScalarConstant(clang::Expr *e);
