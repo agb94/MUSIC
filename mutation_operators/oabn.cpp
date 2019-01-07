@@ -95,6 +95,6 @@ void OABN::Mutate(clang::Expr *e, MusicContext *context)
 		if (token.compare(mutated_token) == 0)
 			continue;
 
-		context->mutant_database_.AddMutantEntry(name_, start_loc, end_loc, token, mutated_token, context->getStmtContext().getProteumStyleLineNum());
+		context->mutant_database_.AddMutantEntry(name_, start_loc, end_loc, token, mutated_token, context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
 	}
 }

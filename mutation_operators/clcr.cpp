@@ -95,7 +95,7 @@ void CLCR::Mutate(clang::Expr *e, MusicContext *context)
 	{
     context->mutant_database_.AddMutantEntry(
         name_, start_loc, end_loc, token, it, 
-        context->getStmtContext().getProteumStyleLineNum());
+        context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
 	}
 }
 

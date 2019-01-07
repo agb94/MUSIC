@@ -1542,6 +1542,7 @@ ostream& operator<<(ostream &stream, const MutantEntry &entry)
 {
   stream << "============ entry =============" << endl;
   stream << "proteum line num: " << entry.getProteumStyleLineNum() << endl;
+  stream << "proteum col num: " << entry.getProteumStyleColumnNum() << endl;
   stream << "start location: "; PrintLocation(entry.src_mgr_, entry.getStartLocation());
   stream << "end location: "; PrintLocation(entry.src_mgr_, entry.getTokenEndLocation());
   stream << "token: " << entry.getToken() << endl;

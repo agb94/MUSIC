@@ -72,7 +72,7 @@ void OMMO::GenerateMutantForPostDec(UnaryOperator *uo, MusicContext *context)
 
 	  context->mutant_database_.AddMutantEntry(
 	  		name_, start_loc, end_loc, token, mutated_token, 
-	  		context->getStmtContext().getProteumStyleLineNum());
+	  		context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
 	}
 
   if (range_.empty() ||
@@ -84,7 +84,7 @@ void OMMO::GenerateMutantForPostDec(UnaryOperator *uo, MusicContext *context)
 	  
 	  context->mutant_database_.AddMutantEntry(
 	  		name_, start_loc, end_loc, token, mutated_token, 
-	  		context->getStmtContext().getProteumStyleLineNum());
+	  		context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
   }
 
   // reset the code structure
@@ -111,7 +111,7 @@ void OMMO::GenerateMutantForPreDec(UnaryOperator *uo, MusicContext *context)
 	 
 	 	context->mutant_database_.AddMutantEntry(
 	 			name_, start_loc, end_loc, token, mutated_token, 
-	 			context->getStmtContext().getProteumStyleLineNum());
+	 			context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
 	}
 
 
@@ -124,7 +124,7 @@ void OMMO::GenerateMutantForPreDec(UnaryOperator *uo, MusicContext *context)
 
 	  context->mutant_database_.AddMutantEntry(
 	  		name_, start_loc, end_loc, token, mutated_token, 
-	  		context->getStmtContext().getProteumStyleLineNum());
+	  		context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
  	}
 
   // reset the code structure

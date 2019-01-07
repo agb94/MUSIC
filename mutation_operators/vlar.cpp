@@ -69,7 +69,7 @@ void VLAR::Mutate(clang::Expr *e, MusicContext *context)
   	
   	if (sameArrayElementType(e->getType(), vardecl->getType()))
   	{
-  		context->mutant_database_.AddMutantEntry(name_, start_loc, end_loc, token, mutated_token, context->getStmtContext().getProteumStyleLineNum());
+  		context->mutant_database_.AddMutantEntry(name_, start_loc, end_loc, token, mutated_token, context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
 		}
   }
 }

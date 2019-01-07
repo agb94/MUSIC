@@ -3,6 +3,7 @@
 
 StmtContext::StmtContext(CompilerInstance *CI)
 	:proteumstyle_stmt_start_line_num_(0),
+	proteumstyle_stmt_start_column_num_(0),
 	is_inside_stmtexpr_(false), is_inside_array_decl_size_(0),
 	is_inside_enumdecl_(false)
 {
@@ -37,6 +38,11 @@ int StmtContext::getProteumStyleLineNum()
 	return proteumstyle_stmt_start_line_num_;
 }
 
+int StmtContext::getProteumStyleColumnNum()
+{
+	return proteumstyle_stmt_start_column_num_;
+}
+
 SourceRange* StmtContext::getLhsOfAssignmentRange()
 {
 	return lhs_of_assignment_range_;
@@ -45,6 +51,11 @@ SourceRange* StmtContext::getLhsOfAssignmentRange()
 void StmtContext::setProteumStyleLineNum(int num)
 {
 	proteumstyle_stmt_start_line_num_ = num;
+}
+
+void StmtContext::setProteumStyleColumnNum(int num)
+{
+	proteumstyle_stmt_start_column_num_ = num;
 }
 
 void StmtContext::setIsInStmtExpr(bool value)

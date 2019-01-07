@@ -79,7 +79,7 @@ void CGSR::Mutate(clang::Expr *e, MusicContext *context)
 	  if (mutated_token.front() == '\'' && mutated_token.back() == '\'')
 	    mutated_token = ConvertCharStringToIntString(mutated_token);
 
-    context->mutant_database_.AddMutantEntry(name_, start_loc, end_loc, token, mutated_token, context->getStmtContext().getProteumStyleLineNum());
+    context->mutant_database_.AddMutantEntry(name_, start_loc, end_loc, token, mutated_token, context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
   }
 }
 

@@ -24,6 +24,7 @@ private:
   clang::Rewriter rewriter_;
 
   int proteumstyle_stmt_end_line_num_;
+  int proteumstyle_stmt_end_column_num_;
 
   ScopeRangeList scope_list_;
 

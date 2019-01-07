@@ -16,6 +16,7 @@ class StmtContext
 public:
 	// initialize to 0
   int proteumstyle_stmt_start_line_num_;
+  int proteumstyle_stmt_start_column_num_;
 
 	// initialize to false
   bool is_inside_stmtexpr_;
@@ -38,10 +39,12 @@ public:
 
 	// getter
 	int getProteumStyleLineNum();
+	int getProteumStyleColumnNum();
 	clang::SourceRange* getLhsOfAssignmentRange();
 
 	// setters
 	void setProteumStyleLineNum(int num);
+	void setProteumStyleColumnNum(int num);
 	void setIsInStmtExpr(bool value);
 	void setIsInArrayDeclSize(bool value);
 	void setIsInEnumDecl(bool value);

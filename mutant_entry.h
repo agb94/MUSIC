@@ -14,10 +14,12 @@ public:
 
   MutantEntry(std::string token, std::string mutated_token,
               clang::SourceLocation start_loc, clang::SourceLocation end_loc,
-              clang::SourceManager &src_mgr, int proteum_style_line_num);
+              clang::SourceManager &src_mgr, int proteum_style_line_num,
+              int proteum_style_column_num);
 
   // getters
   int getProteumStyleLineNum() const;
+  int getProteumStyleColumnNum() const;
   std::string getToken() const;
   std::string getMutatedToken() const;
   // only end location changes after mutation
@@ -31,6 +33,7 @@ public:
 
 private:
   int proteum_style_line_num_;
+  int proteum_style_column_num_;
   std::string token_;
   std::string mutated_token_;
   clang::SourceLocation start_location_;

@@ -63,7 +63,7 @@ void SCSR::GenerateGlobalMutants(Expr *e, MusicContext *context,
 
     if (mutated_token.compare(token) != 0)
     {
-      context->mutant_database_.AddMutantEntry(name_, start_loc, end_loc, token, mutated_token, context->getStmtContext().getProteumStyleLineNum());
+      context->mutant_database_.AddMutantEntry(name_, start_loc, end_loc, token, mutated_token, context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
 
       stringCache->insert(mutated_token);
     }
@@ -95,7 +95,7 @@ void SCSR::GenerateLocalMutants(Expr *e, MusicContext *context,
     {
       stringCache->insert(mutated_token);
 
-      context->mutant_database_.AddMutantEntry(name_, start_loc, end_loc, token, mutated_token, context->getStmtContext().getProteumStyleLineNum());
+      context->mutant_database_.AddMutantEntry(name_, start_loc, end_loc, token, mutated_token, context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
     }
 	}
 }

@@ -26,12 +26,13 @@ src_mgr_(comp_inst->getSourceManager()), lang_opts_(comp_inst->getLangOpts())
 
 void MutantDatabase::AddMutantEntry(MutantName name, clang::SourceLocation start_loc,
                     clang::SourceLocation end_loc, std::string token,
-                    std::string mutated_token, int proteum_style_line_num)
+                    std::string mutated_token, int proteum_style_line_num,
+                    int proteum_style_column_num)
 {
   int line_num = GetLineNumber(src_mgr_, start_loc);
   int col_num = GetColumnNumber(src_mgr_, start_loc);
   MutantEntry new_entry(token, mutated_token, start_loc, 
-                        end_loc, src_mgr_, proteum_style_line_num);
+                        end_loc, src_mgr_, proteum_style_line_num, proteum_style_column_num);
 
   auto line_map_iter = mutant_entry_table_.find(line_num);
 
@@ -107,6 +108,7 @@ void MutantDatabase::WriteEntryToDatabaseFile(
 
   // write information about token BEFORE mutation
   mutant_db_file << entry.getProteumStyleLineNum() << ",";
+  mutant_db_file << entry.getProteumStyleColumnNum() << ",";
   mutant_db_file << GetLineNumber(src_mgr_, entry.getStartLocation()) << ",";
   mutant_db_file << GetColumnNumber(src_mgr_, entry.getStartLocation()) << ",";
   mutant_db_file << GetLineNumber(src_mgr_, entry.getTokenEndLocation()) << ",";

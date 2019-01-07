@@ -240,6 +240,7 @@ MusicASTVisitor::MusicASTVisitor(
     expr_mutant_operator_list_(expr_operator_list)
 {
   proteumstyle_stmt_end_line_num_ = 0;
+  proteumstyle_stmt_end_column_num_ = 0;
 
   // setup for rewriter
   rewriter_.setSourceMgr(src_mgr_, CI->getLangOpts());
@@ -292,9 +293,13 @@ bool MusicASTVisitor::VisitStmt(clang::Stmt *s)
   // set up Proteum-style line number
   if (GetLineNumber(src_mgr_, start_loc) > proteumstyle_stmt_end_line_num_)
   {
+    // Gabin
     stmt_context_.setProteumStyleLineNum(GetLineNumber(
         src_mgr_, start_loc));
     
+    stmt_context_.setProteumStyleColumnNum(GetColumnNumber(
+        src_mgr_, start_loc));
+
     if (isa<IfStmt>(s) || isa<WhileStmt>(s) || isa<SwitchStmt>(s)) 
     {
       SourceLocation end_loc_of_stmt = end_loc;
@@ -311,12 +316,17 @@ bool MusicASTVisitor::VisitStmt(clang::Stmt *s)
         end_loc_of_stmt = end_loc_of_stmt.getLocWithOffset(1);
 
       proteumstyle_stmt_end_line_num_ = GetLineNumber(src_mgr_, end_loc_of_stmt);
+      proteumstyle_stmt_end_column_num_ = GetColumnNumber(src_mgr_, end_loc_of_stmt);
     }
     else if (isa<CompoundStmt>(s) || isa<LabelStmt>(s) || isa<DoStmt>(s) || 
-             isa<SwitchCase>(s) || isa<ForStmt>(s))
+             isa<SwitchCase>(s) || isa<ForStmt>(s)) {
       proteumstyle_stmt_end_line_num_ = stmt_context_.getProteumStyleLineNum();
-    else
+      proteumstyle_stmt_end_column_num_ = stmt_context_.getProteumStyleColumnNum();
+    }
+    else {
       proteumstyle_stmt_end_line_num_ = GetLineNumber(src_mgr_, end_loc);
+      proteumstyle_stmt_end_column_num_ = GetColumnNumber(src_mgr_, end_loc);
+    }
   }
 
   if (stmt_context_.IsInArrayDeclSize() && 
