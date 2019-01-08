@@ -92,7 +92,7 @@ void CGCR::Mutate(clang::Expr *e, MusicContext *context)
   for (auto it: range)
   	context->mutant_database_.AddMutantEntry(
         name_, start_loc, end_loc, token, it, 
-        context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+        context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
 }
 
 bool CGCR::IsDuplicateCaseLabel(

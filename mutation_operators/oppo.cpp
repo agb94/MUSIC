@@ -69,7 +69,7 @@ void OPPO::GenerateMutantForPostInc(UnaryOperator *uo, MusicContext *context)
 
 	  context->mutant_database_.AddMutantEntry(
 	  		name_, start_loc, end_loc, token, mutated_token,
-	  		context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+	  		context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
 	}
 		
 	if (range_.empty() ||
@@ -81,7 +81,7 @@ void OPPO::GenerateMutantForPostInc(UnaryOperator *uo, MusicContext *context)
 
 	  context->mutant_database_.AddMutantEntry(
 	  		name_, start_loc, end_loc, token, mutated_token, 
-	  		context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+	  		context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
 	}
 	  
   // reset the code structure
@@ -108,7 +108,7 @@ void OPPO::GenerateMutantForPreInc(UnaryOperator *uo, MusicContext *context)
 	  
 	  context->mutant_database_.AddMutantEntry(
 	  		name_, start_loc, end_loc, token, mutated_token, 
-	  		context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+	  		context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
 	}
 		
 	if (range_.empty() ||
@@ -120,7 +120,7 @@ void OPPO::GenerateMutantForPreInc(UnaryOperator *uo, MusicContext *context)
 
 	  context->mutant_database_.AddMutantEntry(
 	  		name_, start_loc, end_loc, token, mutated_token, 
-	  		context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+	  		context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
 	}
 
   // reset the code structure

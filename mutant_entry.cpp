@@ -5,11 +5,12 @@ MutantEntry::MutantEntry(
     string token, string mutated_token, clang::SourceLocation start_loc, 
     clang::SourceLocation end_loc, clang::SourceManager &src_mgr,
     int proteum_style_line_num,
-    int proteum_style_column_num)
+    int proteum_style_column_num,
+    std::string function_decl_name)
 : token_(token), mutated_token_(mutated_token),
 start_location_(start_loc), end_location_before_mutation_(end_loc),
 proteum_style_line_num_(proteum_style_line_num),
-proteum_style_column_num_(proteum_style_column_num), src_mgr_(src_mgr)
+proteum_style_column_num_(proteum_style_column_num), function_decl_name_(function_decl_name), src_mgr_(src_mgr)
 {
   // cout << "cp MutantEntry\n";
   // POTENTIAL ISSUE: no translateLineCol check.
@@ -27,6 +28,11 @@ int MutantEntry::getProteumStyleLineNum() const
 int MutantEntry::getProteumStyleColumnNum() const
 {
   return proteum_style_column_num_;
+}
+
+std::string MutantEntry::getFunctionDeclName() const
+{
+  return function_decl_name_;
 }
 
 std::string MutantEntry::getToken() const

@@ -4,13 +4,14 @@
 StmtContext::StmtContext(CompilerInstance *CI)
 	:proteumstyle_stmt_start_line_num_(0),
 	proteumstyle_stmt_start_column_num_(0),
+        function_decl_name_(""),
 	is_inside_stmtexpr_(false), is_inside_array_decl_size_(0),
 	is_inside_enumdecl_(false)
 {
 	clang::SourceManager &src_mgr = CI->getSourceManager();
 	clang::SourceLocation start_of_file = \
 			src_mgr.getLocForStartOfFile(src_mgr.getMainFileID());
-
+        
 	lhs_of_assignment_range_ = new clang::SourceRange(
 				start_of_file, start_of_file);
   addressop_range_ = new clang::SourceRange(
@@ -43,6 +44,11 @@ int StmtContext::getProteumStyleColumnNum()
 	return proteumstyle_stmt_start_column_num_;
 }
 
+std::string StmtContext::getFunctionDeclName()
+{
+        return function_decl_name_;
+}
+
 SourceRange* StmtContext::getLhsOfAssignmentRange()
 {
 	return lhs_of_assignment_range_;
@@ -71,6 +77,11 @@ void StmtContext::setIsInArrayDeclSize(bool value)
 void StmtContext::setIsInEnumDecl(bool value)
 {
 	is_inside_enumdecl_ = value;
+}
+
+void StmtContext::setFunctionDeclName(std::string name)
+{
+        function_decl_name_ = name;
 }
 
 void StmtContext::setLhsOfAssignmentRange(clang::SourceRange *range)

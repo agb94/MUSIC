@@ -86,6 +86,6 @@ void CLSR::Mutate(clang::Expr *e, MusicContext *context)
 
     context->mutant_database_.AddMutantEntry(
         name_, start_loc, end_loc, token, mutated_token, 
-        context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+        context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
   }
 }

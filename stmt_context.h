@@ -10,6 +10,7 @@
 #include "clang/AST/ASTConsumer.h"
 #include "clang/AST/RecursiveASTVisitor.h"
 #include "clang/AST/ASTContext.h"
+#include "clang/AST/Decl.h"
 
 class StmtContext
 {
@@ -17,11 +18,13 @@ public:
 	// initialize to 0
   int proteumstyle_stmt_start_line_num_;
   int proteumstyle_stmt_start_column_num_;
-
+  
 	// initialize to false
   bool is_inside_stmtexpr_;
   bool is_inside_array_decl_size_;
   bool is_inside_enumdecl_;
+
+  std::string function_decl_name_;
 
   clang::SourceRange *lhs_of_assignment_range_;
   clang::SourceRange *addressop_range_;
@@ -40,6 +43,7 @@ public:
 	// getter
 	int getProteumStyleLineNum();
 	int getProteumStyleColumnNum();
+        std::string getFunctionDeclName();
 	clang::SourceRange* getLhsOfAssignmentRange();
 
 	// setters
@@ -48,6 +52,7 @@ public:
 	void setIsInStmtExpr(bool value);
 	void setIsInArrayDeclSize(bool value);
 	void setIsInEnumDecl(bool value);
+        void setFunctionDeclName(std::string name);
 	void setLhsOfAssignmentRange(clang::SourceRange *range);
   void setAddressOpRange(clang::SourceRange *range);
   void setUnaryIncrementDecrementRange(clang::SourceRange *range);

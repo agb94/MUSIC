@@ -54,7 +54,7 @@ void SRWS::Mutate(clang::Expr *e, MusicContext *context)
     
     context->mutant_database_.AddMutantEntry(
         name_, start_loc, end_loc, token, mutated_token, 
-        context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+        context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
   }
 
   // Generate mutant by removing trailing whitespaces
@@ -66,7 +66,7 @@ void SRWS::Mutate(clang::Expr *e, MusicContext *context)
       string mutated_token = token.substr(0, last_non_whitespace+1) + "\"";
       context->mutant_database_.AddMutantEntry(
           name_, start_loc, end_loc, token, mutated_token, 
-          context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+          context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
     }
 
     // Generate mutant by removing whitespaces in the front and back
@@ -81,7 +81,7 @@ void SRWS::Mutate(clang::Expr *e, MusicContext *context)
 
       context->mutant_database_.AddMutantEntry(
           name_, start_loc, end_loc, token, mutated_token, 
-          context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+          context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
     }
   }
 }

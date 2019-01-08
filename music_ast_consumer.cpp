@@ -632,6 +632,8 @@ bool MusicASTVisitor::VisitFunctionDecl(clang::FunctionDecl *f)
     stmt_context_.setCurrentlyParsedFunctionRange(
         new SourceRange(f->getLocStart(), f->getLocEnd()));
 
+    stmt_context_.setFunctionDeclName(f->getNameInfo().getName().getAsString());
+
     // if (f->getName().compare("read_field_headers") == 0 ||
     //     f->getName().compare("formparse") == 0)
     // {

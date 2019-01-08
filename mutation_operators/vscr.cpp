@@ -107,7 +107,7 @@ void VSCR::Mutate(clang::Expr *e, MusicContext *context)
   		{
   			context->mutant_database_.AddMutantEntry(
             name_, start_loc, end_loc, token, mutated_token, 
-            stmt_context.getProteumStyleLineNum(), stmt_context.getProteumStyleColumnNum());
+            stmt_context.getProteumStyleLineNum(), stmt_context.getProteumStyleColumnNum(), stmt_context.getFunctionDeclName());
   		}
   	}
   }

@@ -112,7 +112,7 @@ void OCOR::MutateToIntegralType(
       
       context->mutant_database_.AddMutantEntry(
           name_, start_loc, end_loc, token, mutated_token, 
-          context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+          context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
     }
   }
 }
@@ -130,7 +130,7 @@ void OCOR::MutateToFloatingType(
       
       context->mutant_database_.AddMutantEntry(
           name_, start_loc, end_loc, token, mutated_token, 
-          context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+          context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
     }
   }
 }
@@ -147,7 +147,7 @@ void OCOR::MutateToSpecifiedRange(
       string mutated_token = "(" + e + ")";
       context->mutant_database_.AddMutantEntry(
           name_, start_loc, end_loc, token, mutated_token, 
-          context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+          context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
     }
   }
 }

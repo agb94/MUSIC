@@ -86,7 +86,7 @@ void ORLN::Mutate(clang::Expr *e, MusicContext *context)
 	for (auto mutated_token: range_)
 		if (token.compare(mutated_token) != 0)
 		{
-			context->mutant_database_.AddMutantEntry(name_, start_loc, end_loc, token, mutated_token, context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum());
+			context->mutant_database_.AddMutantEntry(name_, start_loc, end_loc, token, mutated_token, context->getStmtContext().getProteumStyleLineNum(), context->getStmtContext().getProteumStyleColumnNum(), context->getStmtContext().getFunctionDeclName());
 		}
 }
 

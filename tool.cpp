@@ -763,7 +763,7 @@ protected:
     else
       cout << "opened file name " << g_mutdbfile_name << endl;
 
-    out_mutDb << "Mutant Filename,Mutation Operator,Line#,Col#,Before Mutation,,,,,After Mutation" << endl;
+    out_mutDb << "Mutant Filename,Mutation Operator,Line#,Col#,Function Name,Before Mutation,,,,,After Mutation" << endl;
     out_mutDb << ",,,Start Line#,Start Col#,End Line#,End Col#,Target Token,";
     out_mutDb << "Start Line#,Start Col#,End Line#,End Col#,Mutated Token" << endl;
     out_mutDb.close();

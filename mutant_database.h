@@ -30,7 +30,7 @@ public:
   void AddMutantEntry(MutantName name, clang::SourceLocation start_loc,
                       clang::SourceLocation end_loc, std::string token,
                       std::string mutated_token, int proteum_style_line_num,
-                      int proteum_style_column_num);
+                      int proteum_style_column_num, std::string function_decl_name);
   void WriteEntryToDatabaseFile(std::string mutant_name, const MutantEntry &entry);
   void WriteAllEntriesToDatabaseFile();
   void WriteEntryToMutantFile(const MutantEntry &entry);
